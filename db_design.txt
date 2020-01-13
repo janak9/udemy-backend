@@ -1,0 +1,55 @@
+users: 
+    name*
+    email*
+    pwd*
+    profile
+    isActive
+
+categories: (admin)
+    name*
+    description
+
+sub_categories: (admin)
+    cat_id*
+    name*
+    description
+
+topics: (admin)
+    sub_cat_id*
+    name*
+    description*
+
+courses: 
+    topic_id*
+    title*
+    description*
+    languages* []
+    learn_topic* []
+    created_by*
+    price*
+
+course_contents:
+    course_id*
+    title*
+
+lectures:
+    course_content_id*
+    title*
+    description*
+    duration*
+    video_url*
+    thumbnail_url*
+
+cart:
+    user_id*
+    course_id*
+    
+purchases:
+    user_id*
+    course_id*
+    title*
+    description*
+    price*
+
+
+
