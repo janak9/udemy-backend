@@ -4,14 +4,23 @@ users:
     pwd*
     profile
     isActive
+    headline
+    biography
+    Website
+    twitter
+    facebook
+    linkedin
+    youtube
 
 categories: (admin)
     name*
+    icon*
     description
 
 sub_categories: (admin)
     cat_id*
     name*
+    icon*
     description
 
 topics: (admin)

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const AdminSchema = new Schema({
     first_name: {
         type: String,
         required: true,
@@ -46,69 +46,16 @@ const UserSchema = new Schema({
     },
     profile: {
         type: String,
-        trim: true
+        trim: false
     },
     isActive: {
         type: Boolean,
-        default: false
-    },
-    headline: {
-        type: String,
-        trim: true
-    },
-    biography: {
-        type: String,
-        trim: true
-    },
-    Website: {
-        type: String,
-        trim: true,
-        validate(val){
-            if(!validator.isURL(val)){
-                throw new Error("Invalid URL...!")
-            }
-        }
-    },
-    twitter: {
-        type: String,
-        trim: true,
-        validate(val){
-            if(!validator.isURL(val)){
-                throw new Error("Invalid URL...!")
-            }
-        }
-    },
-    facebook: {
-        type: String,
-        trim: true,
-        validate(val){
-            if(!validator.isURL(val)){
-                throw new Error("Invalid URL...!")
-            }
-        }
-    },
-    linkedin: {
-        type: String,
-        trim: true,
-        validate(val){
-            if(!validator.isURL(val)){
-                throw new Error("Invalid URL...!")
-            }
-        }
-    },
-    youtube: {
-        type: String,
-        trim: true,
-        validate(val){
-            if(!validator.isURL(val)){
-                throw new Error("Invalid URL...!")
-            }
-        }
+        default: true
     }
 }, {
-    collation: "users",
+    collation: "admins",
     timestamps: true
 });
 
-module.exports = mongoose.model("users", UserSchema);
+module.exports = mongoose.model("admins", AdminSchema);
 

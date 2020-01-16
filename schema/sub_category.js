@@ -12,6 +12,11 @@ const SubCategorySchema = new Schema({
         required: true,
         trim: true
     },
+    icon: {
+        type: String,
+        required: true,
+        trim: true
+    },
     description: {
         type: String,
         trim: true

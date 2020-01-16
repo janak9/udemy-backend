@@ -42,6 +42,10 @@ const LectureSchema = new Schema({
                 throw new Error("Invalid Thumbnail URL...!");
             }
         }
+    },
+    isPrivate: {
+        type: Boolean,
+        default: true
     }
 }, {
     collation: "lectures",
