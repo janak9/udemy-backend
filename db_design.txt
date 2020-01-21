@@ -18,31 +18,32 @@ categories: (admin)
     description
 
 sub_categories: (admin)
-    cat_id*
+    cat*
     name*
     icon*
     description
 
 topics: (admin)
-    sub_cat_id*
+    sub_cat*
     name*
     description*
 
 courses: 
-    topic_id*
+    topic*
     title*
     description*
-    languages* []
+    speak_language* 
+    subtitle_languages* []
     learn_topic* []
     created_by*
     price*
 
 course_contents:
-    course_id*
+    course*
     title*
 
 lectures:
-    course_content_id*
+    course_content*
     title*
     description*
     duration*
@@ -50,15 +51,13 @@ lectures:
     thumbnail_url*
 
 cart:
-    user_id*
-    course_id*
+    user*
+    course*
     
 purchases:
-    user_id*
-    course_id*
+    user*
+    course*
     title*
     description*
     price*
-
-
 

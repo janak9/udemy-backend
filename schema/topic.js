@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TopicSchema = new Schema({
-    sub_category_id: {
+    sub_category: {
         type: Schema.Types.ObjectId,
         ref: 'sub_categories',
         required: true
@@ -10,6 +10,7 @@ const TopicSchema = new Schema({
     name: {
         type: String,
         required: true,
+        unique: true,
         trim: true
     },
     description: {

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CourseSchema = new Schema({
-    topic_id: {
+    topic: {
         type: Schema.Types.ObjectId,
         ref: 'topics',
         required: true
@@ -17,7 +17,11 @@ const CourseSchema = new Schema({
         trim: true,
         required: true
     },
-    languages: {
+    speak_language: {
+        type: String,
+        required: true,
+    },
+    subtitle_languages: {
         type: Array,
         required: true,
     },

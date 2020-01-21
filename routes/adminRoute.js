@@ -3,43 +3,44 @@ const chalk = require("chalk");
 const fs = require('fs');
 
 const auth = require("./middleware/auth");
-const User = require("../schema/user");
+const isAdmin = require("./middleware/isAdmin");
+const Admin = require("../schema/admin");
 const upload = require('../upload');
 
 const router = express.Router();
 
-router.use(auth);
+router.use(auth, isAdmin);
 
 router.get("/", async function(req, res){
     try{
-        var user = await User.findById(req.user._id);
-        return res.json(user);
+        var admin = await Admin.findById(req.admin._id);
+        return res.json(admin);
     }catch(error){
         console.log(chalk.red("error : "), error);
-        return res.status(500).send("an error occured while retriving user");
+        return res.status(500).send("an error occured while retriving admin");
     }
 });
 
 router.put("/profile_update", upload.single("profile"), async function(req, res){
     try{
-        var user = await User.findById(req.user._id);
+        var admin = await Admin.findById(req.admin._id);
 
         if(req.fileValidationError){
             return res.status(400).send(req.fileValidationError);
         }
 
-        if(user.profile){
-            let loc = user.profile.replace(process.env['BASE_URL'], 'public');
+        if(admin.profile){
+            let loc = admin.profile.replace(process.env['BASE_URL'], 'public');
             fs.unlink(loc);
         }
 
-        user.profile = req.file.fullPath;
-        user.save();
+        admin.profile = req.file.fullPath;
+        admin.save();
 
-        return res.json(user);  
+        return res.json(admin);  
     }catch(error){
         console.log(chalk.red("error : "), error);
-        return res.status(500).send("an error occured while retriving user");
+        return res.status(500).send("an error occured while retriving admin");
     }
 });
 

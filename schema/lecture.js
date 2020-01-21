@@ -3,7 +3,7 @@ const validator = require("validator");
 const Schema = mongoose.Schema;
 
 const LectureSchema = new Schema({
-    course_id: {
+    course_content: {
         type: Schema.Types.ObjectId,
         ref: 'course_contents',
         required: true

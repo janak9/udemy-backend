@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CartSchema = new Schema({
-    user_id: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
         required: true
     },
-    course_id: {
+    course: {
         type: Schema.Types.ObjectId,
-        ref: 'course',
+        ref: 'courses',
         required: true
     }
 }, {

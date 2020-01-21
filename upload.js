@@ -7,21 +7,23 @@ const storage = multer.diskStorage({
         let subPath = "";
         if(file.fieldname == "profile"){
             subPath = "/profiles";
-        }else if(file.fieldname == "video"){
-            subPath = "/lectures";
-        }else{
-            throw new Error("Invalid Fieldname...! Fieldname must be profile or video.");
+        } else if (file.fieldname == "video"){
+            subPath = "/lectures/video";
+        } else if (file.fieldname == "thumbnail"){
+            subPath = "/lectures/thumbnail";
+        } else {
+            throw new Error("Invalid Fieldname...! File fieldname must be profile, video or thumbnail.");
         }
 
         file.subPath = subPath;
         dir = "./public" + subPath;
         if(! fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+            fs.mkdirSync(dir, {recursive: true});
         }
         cb(null, dir);
     },
     filename: function(req, file, cb){
-        let fname = Date.now() + file.originalname.replace(' ', '_');
+        let fname = Date.now() + file.originalname.replace(/ /g, '_'); // replace all occurences
         file.fullPath = process.env['BASE_URL'] + file.subPath + "/" + fname;
         console.log(file);
         cb(null, fname)
@@ -36,7 +38,7 @@ const upload = multer({
 });
 
 var validateFile = function(req, file, cb){
-    if(file.fieldname == "profile"){
+    if(file.fieldname == "profile" || file.fieldname == "thumbnail"){
         var allowedFileTypes = /jpg|jpeg|png|gif/;
         var fileValidationError = "Invalid file type. Only JPG, JPEG, PNG and GIF file are allowed.";
     }else{
